@@ -6,17 +6,22 @@ import { useState } from 'react';
 
 function App() {
 
-  let [sikora, setSikora] = useState(0)
+  let [person, setPerson] = useState(0)
   let [isGay, setGay] = useState(true)
+  let [height, setHeight] = useState(0)
+  let [age, setAge] = useState(0)
 
-  if(sikora > 80) {
-    setSikora(75);
+  if(person > 100) {
+    setPerson(90);
   }
   const gay = () => {
    if(!isGay) {
      setGay(true)
      
    }
+  }
+  if(age<0){
+    setAge(0)
   }
   setTimeout(gay,
     1000)
@@ -26,7 +31,7 @@ function App() {
         <div className='container'>
           <div className='row'>
             <div className='col-xs-12'>
-              <p className='h3 border border-primary p-2 rounded text-primary'>SIKORA'S PERSONAL INFORMATION</p>
+              <p className='h3 border border-primary p-2 rounded text-primary mt-5 mt-lg-0'>CREATE YOUR OWN NPC</p>
             </div>
           </div>
         </div>
@@ -34,11 +39,17 @@ function App() {
      
         <div className='container'>
           <div className='row'>
-            <div className='col-xs-12 col-lg-6 mb-5'>
-            <span className='border border-primary p-3 rounded text-primary h1'>IQ SIKORY: {sikora}</span>
+            <div className='col-xs-12 col-lg-3 mb-5'>
+            <span className='border border-primary p-3 rounded text-primary h1'>NPC'S IQ: {person}</span>
             </div>
-            <div className='col-xs-12 col-lg-6'>
-            <span className='border border-primary p-3 rounded text-primary h1'>GEJ? : {(isGay ? "TAK" : "NIE")}</span>
+            <div className='col-xs-12 col-lg-3 mb-5'>
+            <span className='border border-primary p-3 rounded text-primary h1'>GAY? : {(isGay ? "YES" : "NO")}</span>
+            </div>
+            <div className='col-xs-12 col-lg-3 mb-5'>
+            <span className='border border-primary p-3 rounded text-primary h1'>HEIGHT: {height}</span>
+            </div>
+            <div className='col-xs-12 col-lg-3 mb-5'>
+            <span className='border border-primary p-3 rounded text-primary h1'>AGE: {age}</span>
             </div>
           </div>
         </div>
@@ -46,13 +57,34 @@ function App() {
         <div className='container-fluid m-5'>
             <div className='row'>
               <div className='col-xs-12 col-lg-4'>
-                <button onClick={()=> setSikora(sikora-1)} className="btn btn-outline-danger btn-lg m-2">Odejmij sikorze IQ</button>
+                <button onClick={()=> setPerson(person-1)} className="btn btn-outline-primary btn-lg m-2">SUBTRACT IQ</button>
               </div>
               <div className='col-xs-12 col-lg-4'>
-                <button onClick={()=> setGay(!isGay)} className="btn btn-outline-danger btn-lg m-2">Zmień Sikorze orientację</button>
+                <button onClick={()=> setPerson(person+1)} className="btn btn-outline-primary btn-lg m-2">ADD IQ</button>
               </div>
               <div className='col-xs-12 col-lg-4'>
-                <button onClick={()=> setSikora(sikora+1)} className="btn btn-outline-danger btn-lg m-2">Dodaj sikorze IQ</button>
+                <button onClick={()=> setGay(!isGay)} className="btn btn-outline-danger btn-lg m-2">CHANGE ORIENTATION</button>
+              </div>
+              </div>
+
+              <div className='row'>
+              <div className='col-xs-12 col-lg-6'>
+                <button onClick={()=> setHeight(height-1)} className="btn btn-outline-primary btn-lg m-2">SUBTRACT HEIGHT</button>
+              </div>
+              <div className='col-xs-12 col-lg-6'>
+                <button onClick={()=> setHeight(height+1)} className="btn btn-outline-primary btn-lg m-2">ADD HEIGHT</button>
+              </div>
+            </div>
+
+              <div className='row'>
+              <div className='col-xs-12 col-lg-4'>
+                <button onClick={()=> setAge(age-1)} className="btn btn-outline-danger btn-lg m-2">SUBTRACT AGE</button>
+              </div>
+              <div className='col-xs-12 col-lg-4'>
+                <button onClick={()=> setAge(age+1)} className="btn btn-outline-danger btn-lg m-2">ADD AGE</button>
+              </div>
+              <div className='col-xs-12 col-lg-4'>
+                <button onClick={()=> setAge(age)} className="btn btn-outline-primary btn-lg m-2">??????</button>
               </div>
             </div>
         </div>
