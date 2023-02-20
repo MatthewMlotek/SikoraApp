@@ -11,7 +11,7 @@ function App() {
     localStorage.setItem("age", toString(age));
   }
 
-  let [person, setPerson] = useState(0)
+  let [iq, setIq] = useState(0)
   let [isGay, setGay] = useState(true)
   let [height, setHeight] = useState(0)
   let [age, setAge] = useState(0)
@@ -21,15 +21,13 @@ function App() {
     const name = localStorage.getItem('name');
     if (name) {
     setName(name);
-
-    const age = localStorage.getItem('age');
-    if (age) {
-    setName(Number(age));
   }
-  },[])
+  },[]);
 
-  if(person > 100) {
-    setPerson(90);
+ 
+
+  if(iq > 100) {
+    setIq(90);
   }
   const gay = () => {
    if(!isGay) {
@@ -39,6 +37,12 @@ function App() {
   }
   if(age<0){
     setAge(0)
+  }
+  if(height<0){
+    setHeight(0)
+  }
+  if(iq<0){
+    setIq(0)
   }
   setTimeout(gay,
     1000)
@@ -62,7 +66,7 @@ function App() {
           </div>
           <div className='row'>
             <div className='col-xs-12 col-lg-3 mb-5'>
-            <span className='border border-primary p-3 rounded text-primary h1'>NPC'S IQ: {person}</span>
+            <span className='border border-primary p-3 rounded text-primary h1'>NPC'S IQ: {iq}</span>
             </div>
             <div className='col-xs-12 col-lg-3 mb-5'>
             <span className='border border-primary p-3 rounded text-primary h1'>GAY? : {(isGay ? "YES" : "NO")}</span>
@@ -79,10 +83,10 @@ function App() {
         <div className='container-fluid m-5'>
             <div className='row'>
               <div className='col-xs-12 col-lg-4'>
-                <button onClick={()=> setPerson(person-1)} className="btn btn-outline-primary btn-lg m-2">SUBTRACT IQ</button>
+                <button onClick={()=> setIq(iq-1)} className="btn btn-outline-primary btn-lg m-2">SUBTRACT IQ</button>
               </div>
               <div className='col-xs-12 col-lg-4'>
-                <button onClick={()=> setPerson(person+1)} className="btn btn-outline-primary btn-lg m-2">ADD IQ</button>
+                <button onClick={()=> setIq(iq+1)} className="btn btn-outline-primary btn-lg m-2">ADD IQ</button>
               </div>
               <div className='col-xs-12 col-lg-4'>
                 <button onClick={()=> setGay(!isGay)} className="btn btn-outline-danger btn-lg m-2">CHANGE ORIENTATION</button>
