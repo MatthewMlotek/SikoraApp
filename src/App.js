@@ -2,14 +2,31 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
+
+  const save = ()=>{
+    localStorage.setItem("name", name);
+    localStorage.setItem("age", toString(age));
+  }
 
   let [person, setPerson] = useState(0)
   let [isGay, setGay] = useState(true)
   let [height, setHeight] = useState(0)
   let [age, setAge] = useState(0)
+  let [name, setName] = useState("")
+
+  useEffect(()=>{
+    const name = localStorage.getItem('name');
+    if (name) {
+    setName(name);
+
+    const age = localStorage.getItem('age');
+    if (age) {
+    setName(Number(age));
+  }
+  },[])
 
   if(person > 100) {
     setPerson(90);
@@ -38,6 +55,11 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
      
         <div className='container'>
+          <div className='row'>
+            <div className='col-xs-5'>
+              <input type="text" value={name} placeholder="Name" onChange={(e)=>setName(e.target.value)} className="form-control bg-dark my-5" style={{color: "white"}}/>
+            </div>
+          </div>
           <div className='row'>
             <div className='col-xs-12 col-lg-3 mb-5'>
             <span className='border border-primary p-3 rounded text-primary h1'>NPC'S IQ: {person}</span>
@@ -84,7 +106,7 @@ function App() {
                 <button onClick={()=> setAge(age+1)} className="btn btn-outline-danger btn-lg m-2">ADD AGE</button>
               </div>
               <div className='col-xs-12 col-lg-4'>
-                <button onClick={()=> setAge(age)} className="btn btn-outline-primary btn-lg m-2">??????</button>
+                <button onClick={()=> save()} className="btn btn-outline-primary btn-lg m-2">SAVE</button>
               </div>
             </div>
         </div>
