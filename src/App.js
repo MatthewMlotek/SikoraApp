@@ -5,23 +5,35 @@ import 'bootstrap/dist/js/bootstrap.js';
 import { useState, useEffect } from 'react';
 
 function App() {
-
-  const save = ()=>{
-    localStorage.setItem("name", name);
-    localStorage.setItem("age", toString(age));
-  }
-
+  
   let [iq, setIq] = useState(0)
   let [isGay, setGay] = useState(true)
   let [height, setHeight] = useState(0)
   let [age, setAge] = useState(0)
   let [name, setName] = useState("")
 
-  useEffect(()=>{
-    const name = localStorage.getItem('name');
-    if (name) {
-    setName(name);
+  let dataToStore ={
+    iq,
+    isGay,
+    height,
+    age,
+    name
   }
+
+  const save = ()=>{
+    localStorage.setItem("data", JSON.stringify(dataToStore));
+  }
+
+  useEffect(()=>{
+
+    const data = JSON.parse(localStorage.getItem('data'))
+    if (data) {
+      setIq(data.iq)
+      setGay(data.isGay)
+      setHeight(data.height)
+      setAge(data.age)
+      setName(data.name)
+   }
   },[]);
 
  
